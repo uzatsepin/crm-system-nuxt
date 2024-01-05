@@ -16,8 +16,8 @@
 		--card: #0e172a;
 		--card-foreground: 210 40% 98%;
 
-		--border: #202937;
-		--input: #202937;
+		--border: #3a4a64;
+		--input: #3a4a64;
 		--sidebar: #0e172a;
 
 		--primary: #a252c8;
@@ -32,7 +32,7 @@
 		--destructive: 0 62.8% 30.6%;
 		--destructive-foreground: 210 40% 98%;
 
-		--ring: #202937;
+		--ring: #4d5f85;
 		--radius: 0.5rem;
 	}
 }
@@ -42,7 +42,7 @@
 		@apply border-border;
 	}
 	body {
-		@apply bg-background text-foreground;
+		@apply bg-background text-foreground text-base;
 		font-family: "Lato", sans-serif;
 	}
 }

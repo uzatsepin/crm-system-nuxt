@@ -6,6 +6,7 @@ export default defineNuxtConfig({
 		"@nuxtjs/tailwindcss",
 		"shadcn-nuxt",
 		"nuxt-icon",
+		"@pinia/nuxt",
 		[
 			"@nuxtjs/google-fonts",
 			{
@@ -22,4 +23,7 @@ export default defineNuxtConfig({
 		prefix: "Ui",
 		componentDir: "./components/ui",
 	},
+	pinia: {
+		storesDirs: ['./stores/**']
+	}
 })

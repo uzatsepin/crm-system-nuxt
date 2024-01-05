@@ -1,11 +1,10 @@
 <script lang="ts" setup>
-console.log('loaded')
 </script>
 
 <template>
     <section class="grid" style="min-height: 100vh;">
         <LayoutSibebar />
-        <div></div>
+        <NuxtPage />
     </section>
 </template>
 
