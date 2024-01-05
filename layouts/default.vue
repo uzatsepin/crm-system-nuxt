@@ -4,7 +4,9 @@
 <template>
     <section class="grid" style="min-height: 100vh;">
         <LayoutSibebar />
-        <NuxtPage />
+        <div>
+            <slot />
+        </div>
     </section>
 </template>
 
