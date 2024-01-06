@@ -13,8 +13,6 @@ const sourceColumnRef = ref<IColumn | null>(null)
 
 const { data, isLoading, refetch} = useKanbanQuery()
 
-console.log(data.value)
-
 
 </script>
 
@@ -28,13 +26,16 @@ console.log(data.value)
                     <div class="rounded bg-slate-700 py-1 px-5 mb-2 text-center">
                         {{ column.name }}
                     </div>
+                    <KanbanCreateDeal :refetch="refetch" :status="column.id"/>
                     <div v-for="card in column.items" :key="card.id">
-                        <UiCard class="mb-3" draggable="true">
+                        <UiCard class="mb-5" draggable="true">
                             <UiCardHeader role="button">
                                 <UiCardTitle>{{ card.name }}</UiCardTitle>
                                 <UiCardDescription class="mt-2 block">{{ convertCurrency(card.price) }}</UiCardDescription>
                             </UiCardHeader>
-                            <UiCardContent class="text-xs">{{ card.companyName }}</UiCardContent>
+                            <UiCardContent class="text-xs">
+                                Компания: {{ card.companyName }}
+                            </UiCardContent>
                             <UiCardFooter>{{ dayjs(card.$createdAt).format('DD MMMM YYYY') }}</UiCardFooter>
                         </UiCard>
                     </div>
