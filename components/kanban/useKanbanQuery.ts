@@ -1,19 +1,22 @@
-import {useQuery} from "@tanstack/vue-query";
-import {DB} from "~/utils/appwrite";
-import {COLLECTION_DEALS, DB_ID} from "~/app.constants";
-import {KANBAN_DATA} from "~/components/kanban/kanban.data";
-import type {IDeal} from "~/types/deals.types";
+import { useQuery } from '@tanstack/vue-query'
+import { COLLECTION_DEALS, DB_ID } from '~/app.constants'
+import type { IDeal } from '~/types/deals.types'
+import { KANBAN_DATA } from './kanban.data'
+import type { IColumn } from './kanban.types'
 
 export function useKanbanQuery() {
     return useQuery({
         queryKey: ['deals'],
         queryFn: () => DB.listDocuments(DB_ID, COLLECTION_DEALS),
         select(data) {
-            const newBoard = [...KANBAN_DATA]
+            const newBoard: IColumn[] = KANBAN_DATA.map(column => ({
+                ...column,
+                items: [],
+            }))
+
             const deals = data.documents as unknown as IDeal[]
-            console.log(newBoard)
-            console.log(deals)
-            for(const deal of deals) {
+
+            for (const deal of deals) {
                 const column = newBoard.find(col => col.id === deal.status)
                 if (column) {
                     column.items.push({
@@ -22,11 +25,12 @@ export function useKanbanQuery() {
                         name: deal.name,
                         price: deal.price,
                         companyName: deal.customer.name,
-                        status: column.name
+                        status: column.name,
                     })
                 }
             }
+
             return newBoard
-        }
+        },
     })
 }
