@@ -3,10 +3,10 @@ export default defineNuxtConfig({
     devtools: {enabled: false},
     modules: [
         "@nuxt/image",
-        "@nuxtjs/tailwindcss",
         "shadcn-nuxt",
         "nuxt-icon",
         "@pinia/nuxt",
+        "@nuxt/ui",
         ["@vee-validate/nuxt", {
             autoImports: true,
         }],

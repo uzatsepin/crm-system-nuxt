@@ -7,10 +7,13 @@ import {useMutation} from "@tanstack/vue-query";
 import type {EnumStatus} from "~/types/deals.types";
 import {COLLECTION_DEALS, DB_ID} from "~/app.constants";
 import {generateColumnStyle} from "~/components/kanban/generateGradient";
+import {useDealSlideStore} from "~/store/deal-slide.store";
 
 useSeoMeta({
     title: "Home | CRM System"
 })
+
+const store = useDealSlideStore();
 
 const dragCardRef = ref<ICard | null>(null);
 const sourceColumnRef = ref<IColumn | null>(null)
@@ -64,7 +67,7 @@ function handleDrop(targetColumn: IColumn) {
                     <KanbanCreateDeal :refetch="refetch" :status="column.id"/>
                     <UiCard v-for="card in column.items" :key="card.id" class="mb-5" draggable="true"
                             @dragstart="() => handleDragStart(card, column)">
-                        <UiCardHeader role="button">
+                        <UiCardHeader role="button" @click="store.set(card)">
                             <UiCardTitle>{{ card.name }}</UiCardTitle>
                             <UiCardDescription class="mt-2 block">{{
                                     convertCurrency(card.price)
@@ -78,6 +81,7 @@ function handleDrop(targetColumn: IColumn) {
                     </UiCard>
                 </div>
             </div>
+            <KanbanSlideover />
         </div>
     </div>
 </template>
