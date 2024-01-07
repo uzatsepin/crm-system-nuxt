@@ -14,14 +14,14 @@ const isLocalOpen = computed({
 <template>
     <div>
         <USlideover v-model="isLocalOpen">
-            <UCard class="flex flex-col flex-1 overflow-y-auto" :ui="{
+            <UCard class="flex flex-col flex-1 overflow-y-auto bg-slate-900" :ui="{
                 body: {base: 'flex-1',
                 ring: '',
                 divide: 'divide-y divide-border'
                 }
             }">
                 <template #header>
-                    <KanbanSlideoverTop/>
+                    <KanbanSlideoverTop />
                 </template>
                 <KanbanSlideoverComments/>
             </UCard>
